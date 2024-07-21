@@ -1,23 +1,22 @@
 #include <bits/stdc++.h>
+#define ll long long int
 using namespace std;
-int mindiff(const vector<int>&weights,int index,int group1,int group2,int n){
-    if(index==n){
-        return abs(group1-group2);
+ll solve(int idx,const vector<ll>&arr,ll sum1,ll sum2) {
+    if (idx == arr.size()) {
+        return abs(sum1 - sum2);
     }
-    int diff1 = mindiff(weights,index+1,group1+weights[index],group2,n);
-    int diff2 = mindiff(weights,index+1,group1,group2+weights[index],n);
-    return min(diff1,diff2);
+    ll choose = solve(idx + 1, arr, sum1 + arr[idx], sum2);
+    ll notChoose = solve(idx + 1, arr, sum1, sum2 + arr[idx]);
+    return min(choose, notChoose);
 }
 int main() {
-    int n;
-    cin >> n;
-    vector<int> weights(n);
-    int sum=0;
-    for(int i=0;i<n;i++){
-        cin >> weights[i];
-        sum+=weights[i];
+    int N;
+    cin >> N; 
+    vector<ll> arr(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> arr[i];
     }
-    cout<<mindiff(weights,0,0,0,n)<<endl;
+    ll ans=solve(0,arr,0,0);
+    cout<<ans<<endl;
     return 0;
 }
-
