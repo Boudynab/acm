@@ -16,7 +16,7 @@ void placeQueens(int row) {
         if (board[row][col] == '.' && !cols[col] && !diag1[row + col] && !diag2[row - col + SIZE - 1]) {
             cols[col] = diag1[row + col] = diag2[row - col + SIZE - 1] = true;
             placeQueens(row + 1);
-            cols[col] = diag1[row + col] = diag2[row - col + SIZE - 1] = false; // backtrack
+            cols[col] = diag1[row + col] = diag2[row - col + SIZE - 1] = false; // backtrack مش فاهم اوي
         }
     }
 }
