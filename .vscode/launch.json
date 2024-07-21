@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/github/acm",
-      "program": "d:/github/acm/build/Debug/outDebug",
+      "cwd": "d:/github/acm/Static_",
+      "program": "d:/github/acm/Static_/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
