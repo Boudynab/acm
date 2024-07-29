@@ -55,7 +55,7 @@ int main() {
         }
     }
     vector<pair<int, int>> results;
-    for (int i=10;i<n;i++) {
+    for (int i=0;i<n;i++) {
         for (int j =0;j<m;j++) {
             if (isValidTaKCode(i, j, grid)) {
                 results.push_back({i + 1,j + 1});
