@@ -45,6 +45,7 @@ bool isValidTaKCode(int x, int y, const vector<vector<char>>& grid) {
     }
     return true;
 }
+
 int main() {
     int n, m;
     cin >> n >> m;

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 void solve() {
     int testCases;
@@ -8,24 +9,38 @@ void solve() {
         int n;
         cin >> n;
         string s, t;
-        cin >> s >> t;  
-        vector<int> prefix(n + 1, 0);
-        for (int i = 0; i < n; ++i) {
-            prefix[i + 1] = prefix[i] + (s[i] == '1' ? 1 : 0);
-        }  
-        bool flag = true;
-        for (int i = n - 1; i >= 0; --i) {
-            if (s[i] != t[i]) {
-                if (prefix[i + 1] % 2 != 0) {
-                    flag = false;
+        cin >> s >> t;
+        int count_s1 = 0, count_s0 = 0, count_t1 = 0, count_t0 = 0;
+        bool possible = true;
+        for (int i=0;i<n;i++) {
+            if (s[i] == '1') count_s1++;
+            else count_s0++;
+            if (t[i] == '1') count_t1++;
+            else count_t0++;  
+            if(s[i]!=t[i]&&(s[i]=='1')){
+                if(count_s1>0){
+                    possible=true;
+                }
+                else{
+                    possible=false;
                     break;
                 }
-                for (int j = 0; j <= i; ++j) {
-                    s[j] = (s[j] == '0' ? '1' : '0');
-                }
             }
-        } 
-        cout << (flag ? "Yes" : "No") << "\n";
+           else if(s[i]!=t[i]&&(s[i]=='0')){
+            if(count_s1>0){
+                possible=true;
+            }
+            else{
+                possible=false;
+                break;
+            }
+           }
+        }
+        if (possible) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
     }
 }
 int main() {
