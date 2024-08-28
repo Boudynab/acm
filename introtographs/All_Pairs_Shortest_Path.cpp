@@ -16,13 +16,13 @@ void bellmanFord(int n, vector<Edge>& edges, vector<vector<int>>& dist) {
                 }
             }
         }
-        // Check for negative weight cycles
+        // Check for negativecycles
         for (const auto& edge : edges) {
             if (dist[src][edge.u] != inf && dist[src][edge.v] > dist[src][edge.u] + edge.w) {
                 dist[src][edge.v] = neg_inf;
             }
         }
-        // Propagate -Infinity for nodes reachable from a cycle
+        // check if cycle in negcycle inf 
         for (int i = 0; i < n - 1; i++) {
             for (const auto& edge : edges) {
                 if (dist[src][edge.u] == neg_inf) {
