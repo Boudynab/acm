@@ -9,7 +9,7 @@ using namespace std;
 #define inf LLONG_MAX
 int vis[100005], dis[100005];
 vii adj[100005];
-void solve() {
+void solve() {  // djikter
     int n, m; 
     cin >> n >> m;
     for (int i = 1; i <= n; i++) {
