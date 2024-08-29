@@ -9,7 +9,7 @@ priority_queue<pair<pair<long long, long long>, pair<long long, long long>>, vec
 void min_spanning_tree() {
     fill(dist,dist+n,LLONG_MAX);
     dist[x] = 0;
-    q.push({{0, x},{-1,-1}});
+    q.push({{0, x},{-1,-1}}); // (distance,current ) ,(weight,index)
     while (!q.empty()) {
         int d = q.top().first.first, u = q.top().first.second;
         int wei = q.top().second.first, ind = q.top().second.second;
@@ -19,11 +19,14 @@ void min_spanning_tree() {
             if (ind != -1)
                 ans.push_back(ind);
             int sz = adj[u].size();
-            for (auto [v, i]: adj[u])
+            for (auto &e: adj[u]){
+            int v=e.first;
+            int i=e.second;
                 if (dist[u] + edge[i] <= dist[v]) {
                     dist[v] = dist[u] + edge[i];
                     q.push({{dist[v], v}, {edge[i], i}});
                 }
+        }
         }
     }
     int sz = ans.size();
