@@ -4,7 +4,7 @@ using namespace std;
 #define ll long long
 vector<ll> graph[3001];  
 vector<ll> parent(3001); 
-vector<ll> dist(3001, -1);
+vector<ll> dist(3001,-1);
 bool visited[3001];       
 vector<ll> ringroad;  
 bool cycledfs(ll node, ll par) {
