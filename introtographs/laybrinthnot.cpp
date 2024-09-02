@@ -1,39 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define abdo ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-vector<int> graph[2001];  
-vector<int> par(2001); 
-vector<int> vis(2001,0);
-int count_cycle = 1;
-bool found = false;
-int a, b;
-void dfs(int node, int parent) {
-    par[node] = parent;
-    vis[node] = count_cycle;
-    for (auto &child : graph[node]) {
-        if (vis[child]) {
-            if (vis[child] != count_cycle) {
-                a = node;
-                b = child;
-                found = true;
-                return;
-            }
-            continue;
-        }
-        dfs(child, node);
-        if (found) return;
-    }
-}
-int main() {
-    abdo;
+#define abdo ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+int a = -1, b = -1;
+void solve() {
     int n, m, start;
     cin >> n >> m >> start;
+    vector<vector<int>> graph(n + 1);
+    vector<int> par(n + 1, -1);
+    vector<int> vis(n + 1, 0);
+    int count_cycle = 1;
+    bool found = false;
     for (int i = 0; i < m; i++) {
         int u, v;
         cin >> u >> v;
         graph[u].push_back(v);
     }
-    for (auto &child : graph[start]) {
+    function<void(int, int)> dfs = [&](int node, int parent) {
+        par[node] = parent;
+        vis[node] = count_cycle;
+        for (int child : graph[node]) {
+            if (vis[child]) {
+                if (vis[child] != count_cycle) {
+                    a = node;
+                    b = child;
+                    found = true;
+                    return;
+                }
+                continue;
+            }
+            dfs(child, node);
+            if (found) return;
+        }
+    };
+    for (int child : graph[start]) {
         if (vis[child]) {
             a = par[child];
             b = child;
@@ -44,12 +43,12 @@ int main() {
         if (found) {
             vector<int> v1, v2;
             v1.push_back(b);
-            while (par[a]) {
+            while (a != -1 && a != start) {
                 v1.push_back(a);
                 a = par[a];
             }
             v1.push_back(start);
-            while (par[b]) {
+            while (b != -1 && b != start) {
                 v2.push_back(b);
                 b = par[b];
             }
@@ -63,9 +62,14 @@ int main() {
             cout << endl << v2.size() << endl;
             for (int &x : v2)
                 cout << x << ' ';
-            return 0;
+            return;
         }
     }
     cout << "Impossible";
+}
+int main() {
+    abdo;
+    solve();
     return 0;
 }
+
