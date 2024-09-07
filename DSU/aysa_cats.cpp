@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 #define abdo ios_base::sync_with_stdio(0);cin.tie(NULL);cout.tie(NULL);
 using namespace std;
-const int N = 2e5 + 5;
+const int N=2e5+5;
 int n;
 int sizee[N];
 int parent[N]; 
-vector<int> cats[N]; 
+vector<int>cats[N]; 
 void make_set(int v) {
     parent[v] = v;
     sizee[v] = 1;
@@ -47,4 +47,5 @@ int main() {
     for (auto i : cats[leader]) {
         cout << i << ' ';
     }
+    
 }
