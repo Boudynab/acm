@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define abdo ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
-const int N = 10000;
+const int N = 10005;
 const int M = 25;  
 vector<int> adj[N];
 int parent[N][M];
@@ -15,8 +15,12 @@ void dfs(int node, int par, int d) {
         }
     }
 }
-void binriylifting(int n) {
-    memset(parent, -1, sizeof(parent));  
+void binarylifting(int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < M; j++) {
+            parent[i][j] = -1;
+        }
+    }
     dfs(0, -1, 0);
     for (int j = 1; (1 << j) <= n; j++) {
         for (int i = 0; i < n; i++) {
@@ -53,14 +57,15 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         int m;
-        cin >> m;
+        cin >> m;  
         while (m--) {
             int x;
             cin >> x;
             adj[i].push_back(x);
+            adj[x].push_back(i); 
         }
     }
-    binriylifting(n);
+    binarylifting(n);
     int q;
     cin >> q;
     while (q--) {
@@ -68,5 +73,4 @@ int main() {
         cin >> u >> v;
         cout << lca(u, v) << endl;
     }
- 
 }
