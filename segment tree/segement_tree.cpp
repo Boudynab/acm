@@ -60,12 +60,12 @@ int main() {
     cin >> n >> q;
     segmenttree segtree;
     segtree.build(n); 
-    for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
         segtree.update(i, x); 
     }
-     segtree.printTree();  
+     //segtree.printTree();  
     while(q--){
         int type;
         cin >> type;
