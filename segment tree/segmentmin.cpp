@@ -5,9 +5,9 @@ const long long N = 200005;
 struct segmenttree {
     vector<long long> tree; 
     long long sizee = 1;
-    long long base = 0; 
+    long long base = LLONG_MAX; 
     long long merge(long long a, long long b) {
-        return a+b;
+        return min(a, b);
     }
     void build(long long n) {
         while (sizee < n) {
